@@ -10,6 +10,10 @@ The project aims to simulate a T9 keyboard, where the frontend was developed in 
 
 ![Web Example](.github/images/web-example.png)
 
+The project also works on mobile, accessing the local url:
+
+![Mobile Example](.github/images/mobile-example.jpeg)
+
 ## 🔧 Prerequisite
 
 To bring up the application, you **MUST** first:
