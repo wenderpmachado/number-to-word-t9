@@ -8,11 +8,11 @@
 
 The project aims to simulate a T9 keyboard, where the frontend was developed in [React](https://reactjs.org/) + Typescript and the backend with [Nestjs](https://nestjs.com/) (Node + Typescript).
 
-![Web Example](.github/images/web-example.png)
+<img src=".github/images/web-example.png" data-canonical-src=".github/images/web-example.png" width="600" />
 
-The project also works on mobile, accessing the local url:
+The project also works on mobile 📱, accessing the local url:
 
-![Mobile Example](.github/images/mobile-example.jpeg)
+<img src=".github/images/mobile-example.jpeg" data-canonical-src=".github/images/mobile-example.jpeg" width="300" />
 
 ## 🔧 Prerequisite
 
