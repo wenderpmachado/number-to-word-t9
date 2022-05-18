@@ -1,7 +1,10 @@
 {
   "name": "web",
   "version": "0.1.9",
+  "description": "Number to Word WEB",
+  "author": "Wender Machado <wenderpmachado@gmail.com>",
   "private": true,
+  "license": "UNLICENSED",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",

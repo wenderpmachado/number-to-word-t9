@@ -1,8 +1,8 @@
 {
   "name": "api",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "0.1.6",
+  "description": "Number to Word API",
+  "author": "Wender Machado <wenderpmachado@gmail.com>",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
