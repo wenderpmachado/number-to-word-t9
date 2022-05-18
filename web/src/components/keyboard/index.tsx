@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Messages, Textbox, Hints, Keys } from './styles';
+import { Container, Messages, Textbox, Hints, Keys, Key, KeyLetter, KeyNumber } from './styles';
 import { KEYS } from './constants';
 
 const Keyboard: React.FC = () => {
@@ -8,21 +8,38 @@ const Keyboard: React.FC = () => {
   const [sequence, setSequence] = useState('');
   const [hints, setHints] = useState([] as string[]);
 
-  function renderMessages(messages: string[]) {
-    return <></>
+  function incrementSequence(event: any, number: string) {
+    event.preventDefault();
+
+    setSequence(sequence.concat(number));
   }
 
-  function renderHints(hints: string[]) {
-    return <></>
-  }
+  // render helpers
 
-  function renderKeys() {
-    return <></>
-  }
+  const renderMessages = (messages: string[]) => (<></>)
 
-  function renderExtraKeys() {
-    return <></>
-  }
+  const renderHints = (hints: string[]) => (<></>)
+
+  const renderKeys = (
+    <>
+      { Object.keys(KEYS)
+        .filter((key) => isNaN(Number(key)))
+        .map((letter) => {
+          const number = KEYS[letter as unknown as number];
+
+          return (
+            <Key key={number} onClick={(e) => incrementSequence(e, number)}>
+              <KeyNumber>{ number }</KeyNumber>
+              <KeyLetter>{ letter }</KeyLetter>
+            </Key>
+          );
+        })}
+    </>
+  );
+
+  const renderExtraKeys = (<></>);
+
+  // end render helpers
 
   return (
     <Container>
@@ -34,10 +51,8 @@ const Keyboard: React.FC = () => {
         {renderHints(hints)}
       </Hints>
       <Keys>
-        <>
-          {renderKeys}
-          {renderExtraKeys}
-        </>
+        {renderKeys}
+        {renderExtraKeys}
       </Keys>
     </Container>
   );
