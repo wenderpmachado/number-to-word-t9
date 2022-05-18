@@ -8,7 +8,7 @@
 
 The project aims to simulate a T9 keyboard, where the frontend was developed in [React](https://reactjs.org/) + Typescript and the backend with [Nestjs](https://nestjs.com/) (Node + Typescript).
 
-[Web Example](.github/images/web-example.png)
+![Web Example](.github/images/web-example.png)
 
 ## 🔧 Prerequisite
 
@@ -49,7 +49,7 @@ After the database and the server are running, make a request to populate the da
 
 > http://localhost:4000/api
 
-[API Documentation](.github/images/api-example.png)
+![API Documentation](.github/images/api-example.png)
 
 ## :heavy_check_mark: Test
 
