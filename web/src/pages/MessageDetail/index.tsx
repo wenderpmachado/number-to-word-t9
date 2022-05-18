@@ -1,5 +1,5 @@
 import React from 'react';
-import Keyboard from '../../components/keyboard/Keyboard';
+import Keyboard from '../../components/keyboard/index';
 
 const MessageDetail: React.FC = () => (
   <Keyboard />
