@@ -4,15 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDeleteLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { isEmpty } from 'lodash';
 
-import { Container, Messages, Textbox, Hints, Keys, Key, KeyLetter, KeyNumber } from './styles';
+import { Container, Messages, Textbox, Hints, Keys, Key, KeyLetter, KeyNumber, Hint, MessageContainer, MessageText } from './styles';
 import { KEYS } from './constants';
 import NumberToWordService from '../../services/number-to-word.service';
+import { IMessage } from '../../interfaces/message.interface';
+import { IHint } from '../../interfaces/hint.interface';
 
 const Keyboard: React.FC = () => {
-  const [messages, setMessages] = useState([] as string[]);
+  const [messages, setMessages] = useState([] as IMessage[]);
   const [text, setText] = useState([] as string[]);
   const [sequence, setSequence] = useState('');
-  const [hints, setHints] = useState([] as string[]);
+  const [hints, setHints] = useState([] as IHint[]);
 
   // hints
 
@@ -30,6 +32,23 @@ const Keyboard: React.FC = () => {
 
   // end hints
 
+  // helpers
+
+  function resetKeyboard(includingText: boolean = false) {
+    setHints([]);
+    setSequence('');
+
+    if (includingText) {
+      setText([]);
+    }
+  }
+
+  function fullText() {
+    return text.join(' ');
+  }
+
+  // end helpers
+
   // actions
 
   function incrementSequence(event: any, number: string) {
@@ -39,24 +58,63 @@ const Keyboard: React.FC = () => {
   }
 
   function decrementSequence(event: any) {
+    event.preventDefault();
 
+    if (isEmpty(sequence)) {
+      if (text.length === 1) {
+        setText([]);
+      } else {
+        setText(text.slice(0, 1));
+      }
+    } else {
+      setSequence(sequence.slice(0, -1));
+    }
   }
 
-  function addWord(event: any) {
+  function addWord(event: any, word?: string) {
+    event.preventDefault();
 
+    if (isEmpty(word) && isEmpty(hints)) return;
+
+    const newWord = word || hints[0].term;
+
+    setText([...text, newWord]);
+    resetKeyboard();
   }
 
-  function sendMessage() {
+  function sendMessage(event: any) {
+    event.preventDefault();
 
+    if (isEmpty(text)) return;
+
+    setMessages([
+      ...messages,
+      {
+        text: fullText(),
+        createdAt: new Date()
+      }
+    ]);
+
+    resetKeyboard(true);
   }
 
   // end actions
 
   // render helpers
 
-  const renderMessages = (messages: string[]) => (<></>)
+  const renderMessages = (messages: IMessage[]) => (
+    <MessageContainer>
+      {messages.map(({ text, createdAt }) => (
+        <MessageText key={createdAt.toString()}>{text}</MessageText>
+      ))}
+    </MessageContainer>
+  )
 
-  const renderHints = (hints: string[]) => (<></>)
+  const renderHints = (hints: IHint[]) => hints.map((hint) => (
+    <Hint key={hint._id} onClick={(e) => addWord(e, hint.term)}>
+      { hint.term }
+    </Hint>
+  ));
 
   const renderKeys = (
     <>
@@ -103,7 +161,7 @@ const Keyboard: React.FC = () => {
       <Messages>
         {renderMessages(messages)}
       </Messages>
-      <Textbox readOnly={true} />
+      <Textbox onChange={() => {}} value={fullText()} readOnly={true} />
       <Hints>
         {renderHints(hints)}
       </Hints>
