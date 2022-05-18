@@ -1,16 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDeleteLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { isEmpty } from 'lodash';
 
 import { Container, Messages, Textbox, Hints, Keys, Key, KeyLetter, KeyNumber } from './styles';
 import { KEYS } from './constants';
+import NumberToWordService from '../../services/number-to-word.service';
 
 const Keyboard: React.FC = () => {
   const [messages, setMessages] = useState([] as string[]);
   const [text, setText] = useState([] as string[]);
   const [sequence, setSequence] = useState('');
   const [hints, setHints] = useState([] as string[]);
+
+  // hints
+
+  useEffect(() => {
+    updateHints(sequence);
+  }, [sequence]);
+
+  async function updateHints(sequence: string) {
+    if (isEmpty(sequence)) return;
+
+    const { data } = await NumberToWordService.convertToWord(sequence);
+
+    setHints(data.data || []);
+  }
+
+  // end hints
+
+  // actions
 
   function incrementSequence(event: any, number: string) {
     event.preventDefault();
@@ -29,6 +49,8 @@ const Keyboard: React.FC = () => {
   function sendMessage() {
 
   }
+
+  // end actions
 
   // render helpers
 
