@@ -73,8 +73,28 @@ export const KeyLetter = styled.span`
 
 // END KEYS
 
-export const Messages = styled.section``;
-export const Hints = styled.section``;
+export const Messages = styled.section`
+  display: flex;
+`;
+
+export const MessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const MessageText = styled.span`
+  color: ${lightGrey};
+  background-color: ${darkGrey};
+  border: 1px solid ${darkGreyActive};
+  border-radius: ${defaultRadius / 2}px;
+  padding: ${defaultPaddingMargin}px;
+
+  &:not(:last-child) {
+    margin-bottom: ${defaultPaddingMargin}px;
+  }
+`;
+
+// textbox
 
 export const Textbox = styled.input`
   width: 100%;
@@ -86,3 +106,40 @@ export const Textbox = styled.input`
   margin: ${defaultPaddingMargin}px;
   padding: ${defaultPaddingMargin}px;
 `;
+
+// end textbox
+
+// hints
+
+export const Hints = styled.section`
+  display: flex;
+  /* margin-bottom: ${defaultPaddingMargin}px; */
+  padding-bottom: ${defaultPaddingMargin}px;
+  max-width: 100vw;
+  overflow-x: auto;
+
+  & > button:first-child {
+    border-color: ${lightGrey};
+    color: black;
+    font-weight: bolder;
+    background-color: ${mediumGrey};
+    border-width: 1px;
+  }
+`;
+
+export const Hint = styled.button`
+  opacity: 80%;
+  border-width: 0;
+  color: ${mediumGrey};
+  margin-left: ${defaultPaddingMargin}px;
+  padding: ${defaultPaddingMargin}px;
+  border-radius: ${defaultRadius / 2}px;
+
+  background-color: ${darkGrey};
+
+  &:active {
+    background-color: ${darkGreyActive};
+  }
+`;
+
+// end hints
