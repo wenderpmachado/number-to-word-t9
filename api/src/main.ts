@@ -26,7 +26,7 @@ async function bootstrap() {
   app.use(helmet());
 
   const configService = app.get(ConfigService);
-  const port = configService.get('PORT');
+  const port = configService.get('API_PORT');
 
   setupSwagger(app);
 
