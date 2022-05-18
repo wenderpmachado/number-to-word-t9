@@ -5,6 +5,9 @@ const darkGreyActive = '#3C3C3C';
 const mediumGrey = '#b3b3b3';
 const lightGrey = '#D8D8D8';
 
+const defaultPaddingMargin = 8;
+const defaultRadius = 15;
+
 const keysPerLine = 3;
 const lines = 4;
 const marginWidth = '2px';
@@ -73,4 +76,13 @@ export const KeyLetter = styled.span`
 export const Messages = styled.section``;
 export const Hints = styled.section``;
 
-export const Textbox = styled.input``;
+export const Textbox = styled.input`
+  width: 100%;
+  height: 2.5rem;
+  border-radius: ${defaultRadius}px;
+  border-width: 0;
+  background-color: ${darkGrey};
+  color: ${lightGrey};
+  margin: ${defaultPaddingMargin}px;
+  padding: ${defaultPaddingMargin}px;
+`;
