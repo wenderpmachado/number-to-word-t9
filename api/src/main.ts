@@ -6,6 +6,7 @@ import { NestFactory } from '@nestjs/core';
 import helmet from 'helmet';
 
 import { AppModule } from './app.module';
+import { TransformInterceptor } from './@core/interceptors/transform.interceptor';
 
 function setupSwagger(app: INestApplication) {
   const config = new DocumentBuilder()
@@ -13,6 +14,8 @@ function setupSwagger(app: INestApplication) {
     .setDescription('A simple Number to Word (T9)')
     .setVersion('0.1.0')
     .addTag('number-to-word')
+    .addTag('words')
+    .addTag('health-check')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
@@ -22,6 +25,7 @@ function setupSwagger(app: INestApplication) {
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
 
+  app.useGlobalInterceptors(new TransformInterceptor());
   app.useGlobalPipes(new ValidationPipe());
   app.use(helmet());
 
@@ -31,6 +35,6 @@ async function bootstrap() {
   setupSwagger(app);
 
   await app.listen(port);
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  console.log(`🚀 Server running on ${await app.getUrl()}`);
 }
 bootstrap();

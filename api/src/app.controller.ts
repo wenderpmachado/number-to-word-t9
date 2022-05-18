@@ -2,7 +2,7 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Controller, Get } from '@nestjs/common';
 import { version } from '../package.json';
 
-@ApiTags('health check')
+@ApiTags('health-check')
 @Controller()
 export class AppController {
   @Get()

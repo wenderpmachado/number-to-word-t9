@@ -6,7 +6,8 @@ import {
 } from '@nestjs/common';
 import axios from 'axios';
 
-import { WORDS_URL } from './../constants';
+import { WORDS_URL, DEFAULT_LIMIT } from './../constants';
+import { Word } from './word.entity';
 import { WordsRepository } from './words.repository';
 
 @Injectable()
@@ -39,5 +40,14 @@ export class WordsService {
     const result = await this.wordsRepository.populate(words);
 
     return !!result.ok;
+  }
+
+  async searchTerms(
+    terms: string[],
+    limit: number = DEFAULT_LIMIT,
+  ): Promise<Word[] | false> {
+    const result = await this.wordsRepository.searchTerms(terms, limit);
+
+    return result;
   }
 }
