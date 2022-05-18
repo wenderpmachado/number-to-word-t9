@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "0.1.2",
+  "version": "0.1.9",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
