@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDeleteLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+
 import { Container, Messages, Textbox, Hints, Keys, Key, KeyLetter, KeyNumber } from './styles';
 import { KEYS } from './constants';
 
@@ -12,6 +16,18 @@ const Keyboard: React.FC = () => {
     event.preventDefault();
 
     setSequence(sequence.concat(number));
+  }
+
+  function decrementSequence(event: any) {
+
+  }
+
+  function addWord(event: any) {
+
+  }
+
+  function sendMessage() {
+
   }
 
   // render helpers
@@ -37,7 +53,26 @@ const Keyboard: React.FC = () => {
     </>
   );
 
-  const renderExtraKeys = (<></>);
+  const renderExtraKeys = (
+    <>
+      <Key value="" onClick={(e) => decrementSequence(e)}>
+        <KeyNumber>
+          <FontAwesomeIcon icon={faDeleteLeft} />
+        </KeyNumber>
+      </Key>
+      <Key value="0" onClick={(e) => addWord(e)}>
+        <KeyNumber>{ 0 }</KeyNumber>
+        <KeyLetter className="turn-down-left">
+          ]
+        </KeyLetter>
+      </Key>
+      <Key value="" onClick={sendMessage}>
+        <KeyNumber>
+          <FontAwesomeIcon icon={faPaperPlane} />
+        </KeyNumber>
+      </Key>
+    </>
+  );
 
   // end render helpers
 

@@ -17,4 +17,12 @@ export default createGlobalStyle`
     height: 100vh;
     background-color: #000000;
   }
+
+  .turn-down-left {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
 `
