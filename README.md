@@ -82,6 +82,10 @@ $ yarn test
 * [ ] Implement tests
 * [ ] Implement redux to store the messages
 
+<img src=".github/images/features.png" data-canonical-src=".github/images/features.png" width="600" />
+
+> green background has been implemented
+
 ## :wave: Stay in touch
 
 - Author - [Wender Machado](https://www.linkedin.com/in/wenderpmachado)
